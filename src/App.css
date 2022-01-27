@@ -24,12 +24,13 @@ header a:hover {
   color: #48a6e8;
 }
 main {
-  align-self: center;
   margin-top: 230px;
   font-size: 2.7rem;
   font-weight: bold;
   color: whitesmoke;
-  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   text-align: center;
