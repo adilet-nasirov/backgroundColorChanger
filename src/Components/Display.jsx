@@ -2,8 +2,9 @@ import React from "react";
 import "../App.css";
 
 const Display = ({ changeColor, color }) => {
+  document.body.style.backgroundColor = color;
   return (
-    <main className="main" style={{ backgroundColor: color }}>
+    <main>
       <div class="container">
         <p
           style={{
