@@ -8,10 +8,12 @@ class App extends React.Component {
     super();
     this.state = {
       color: "#F1f5f8",
+      type: "simple",
     };
   }
 
   changeColor = () => {
+    let colorType = this.state.type;
     const COLOR_NAMES = [
       "AliceBlue",
       "AntiqueWhite",
@@ -162,13 +164,36 @@ class App extends React.Component {
       "Yellow",
       "YellowGreen",
     ];
-    const randColorIndex = Math.floor(Math.random() * COLOR_NAMES.length);
-    this.setState({ color: COLOR_NAMES[randColorIndex] });
+    if (colorType === "simple") {
+      const randColorIndex = Math.floor(Math.random() * COLOR_NAMES.length);
+      this.setState({ color: COLOR_NAMES[randColorIndex] });
+    } else if (colorType === "hex") {
+      let randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+      this.setState({ color: randomColor });
+    } else {
+      const r = () => (Math.random() * 256) >> 0;
+      let rgbColor = `rgb(${r()}, ${r()}, ${r()})`;
+      this.setState({ color: rgbColor });
+    }
+  };
+  changeSimple = () => {
+    this.setState({ type: "simple" });
+  };
+
+  changeHex = () => {
+    this.setState({ type: "hex" });
+  };
+  changeRgb = () => {
+    this.setState({ type: "rgb" });
   };
   render() {
     return (
       <>
-        <Header />
+        <Header
+          changeSimple={this.changeSimple}
+          changeHex={this.changeHex}
+          changeRgb={this.changeRgb}
+        />
         <Display changeColor={this.changeColor} color={this.state.color} />
       </>
     );
